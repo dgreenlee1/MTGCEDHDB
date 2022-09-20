@@ -4,15 +4,15 @@ from bs4 import BeautifulSoup
 
 
 s3_client = boto3.client("s3")
-S3_BUCKET = 'pythontestbucket2022'
+S3_BUCKET = ' '
 
 
 def lambda_handler(event, context):
     
     session = boto3.Session()
-    bucket_arn = "s3://pythontestbucket2022"
+    bucket_arn = "s3://"
     s3 = session.resource("s3")
-    bucket = s3.Bucket("pythontestbucket2022")
+    bucket = s3.Bucket(" ")
     index = 0
     
 
