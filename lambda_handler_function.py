@@ -20,10 +20,9 @@ def lambda_handler(event, context):
         color_identity = []
         card_list = []
         commander_list = []
-        print(my_bucket_object.key)
+
         file_content = s3_client.get_object(
             Bucket=S3_BUCKET, Key=my_bucket_object.key)["Body"].read()
-        print(file_content[0:20])
         soup = BeautifulSoup(file_content, "html.parser") # Make soup
         # Get color identity
         if soup.find_all('span',class_="ms ms-cost ms-w ms-shadow"):
@@ -56,13 +55,15 @@ def lambda_handler(event, context):
                     commander_list.append(kommand)
         for gli in (commander_list): # Remove Commanders from the mainboard
             card_list.remove(gli)
+            
         # Print statements
-        print("- Color Identity: ", color_identity)
+        print('- Filename: ', my_bucket_object.key)
+        print('- Color Identity: ', color_identity)
         print('- Commanders: '+str(commander_list))
         print('- Card List: '+str(card_list))
         
         index += 1
-        if index == 1:          # It takes a really long time to make the soup, one at a time only
+        if index == 5:          # It takes a really long time to make the soup, one at a time only
             break
     
 
