@@ -22,10 +22,10 @@ for i in range(1,84):
     new_url = page_url + str(i)
     print(page_url+str(i))
     page = requests.get(new_url)
-    myfile = open('page_temp.txt','w+') # open the saved PAGE file for reading text
-    contents = myfile.read()         # read the entire file to string
-    myfile.close()                   # close the file
-    os.remove('page_temp.txt')            # delete the file
+    myfile = open('page_temp.txt','w+')                      # open the saved PAGE file for reading text
+    contents = myfile.read()                                 # read the entire file to string
+    myfile.close()                                           # close the file
+    os.remove('page_temp.txt')                               # delete the file
     soup = BeautifulSoup(contents, 'html.parser')
     print(soup)
     
